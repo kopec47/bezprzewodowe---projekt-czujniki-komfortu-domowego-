@@ -283,7 +283,7 @@ void setup() {
     Serial.println("Akcelerometr ERROR");
   }
 
-  // UWAGA: NIE robimy tutaj init TMP117 / HDC / ILPS22QS
+  
   Serial.println("Czujniki środowiskowe zostaną włączone dopiero po pierwszym ruchu.");
   Serial.println("==================");
 }
