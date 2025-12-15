@@ -131,7 +131,7 @@ bool checkMotion() {
         memcpy(lastAccValue, acc_value, sizeof(acc_value));
 
         if (dx > MOTION_THRESHOLD || dy > MOTION_THRESHOLD || dz > MOTION_THRESHOLD) {
-          Serial.print("🚀 RUCH WYKRYTY! X:");
+          Serial.print(" RUCH WYKRYTY! X:");
           Serial.print(acc_value[0]);
           Serial.print(" Y:");
           Serial.print(acc_value[1]);
