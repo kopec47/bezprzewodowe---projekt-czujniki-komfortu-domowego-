@@ -65,26 +65,26 @@ void initEnvSensorsOnce() {
   tmp.init(newTempEmpty);
   if (tmp.readConfig() != 65535) {
     useThermometer = true;
-    Serial.println("🌡️  Termometr OK");
+    Serial.println("  Termometr OK");
   } else {
-    Serial.println("🌡️  Termometr ERROR");
+    Serial.println("  Termometr ERROR");
   }
 
   // HDC302x
   if (hdc.begin(HDC_ADDR, &Wire)) {
     useHumidity = true;
-    Serial.println("💧 Wilgotność OK");
+    Serial.println(" Wilgotność OK");
   } else {
-    Serial.println("💧 Wilgotność ERROR");
+    Serial.println(" Wilgotność ERROR");
   }
 
   // ILPS22QS
   if (pressureSensor.begin() == ILPS22QS_OK &&
       pressureSensor.Enable() == ILPS22QS_OK) {
     usePressure = true;
-    Serial.println("🌪️  Ciśnienie OK");
+    Serial.println("  Ciśnienie OK");
   } else {
-    Serial.println("🌪️  Ciśnienie ERROR");
+    Serial.println("  Ciśnienie ERROR");
   }
 
   envSensorsInited = true;
@@ -196,7 +196,7 @@ void readAndSendAllSensors() {
     }
   }
 
-  Serial.print("📱 Połączony: ");
+  Serial.print("Połączony: ");
   Serial.println(bleConnected ? "TAK" : "NIE");
   Serial.println("========================");
 }
@@ -204,17 +204,17 @@ void readAndSendAllSensors() {
 // --- BLE ZDARZENIA ---
 void onBLEConnected(BLEDevice central) {
   bleConnected = true;
-  Serial.println("📱 POŁĄCZONY – WYBUDZONY, ALE CZEKA NA RUCH");
+  Serial.println("POŁĄCZONY – WYBUDZONY, ALE CZEKA NA RUCH");
 }
 
 void onBLEDisconnected(BLEDevice central) {
   bleConnected = false;
-  Serial.println("📵 ODŁĄCZONY – TRYB RUCH + SLEEP");
+  Serial.println("ODŁĄCZONY – TRYB RUCH + SLEEP");
 }
 
 // --- SLEEP ---
 void enterBatterySleep() {
-  Serial.println("🛌 SLEEP (tylko akcelerometr aktywny)...");
+  Serial.println("SLEEP (tylko akcelerometr aktywny)...");
 
   BLE.stopAdvertise();
 
@@ -222,7 +222,7 @@ void enterBatterySleep() {
   SCB->SCR |= SCB_SCR_SLEEPDEEP_Msk;
   __WFI();
 
-  Serial.println("☕ WYBUDZONY!");
+  Serial.println("WYBUDZONY!");
 
   if (!BLE.begin()) {
     NVIC_SystemReset();
@@ -237,7 +237,7 @@ void enterBatterySleep() {
   BLE.setLocalName("ComfortApp");
   BLE.advertise();
 
-  Serial.println("BLE OK ✅");
+  Serial.println("BLE OK ");
 
   // Po wybudzeniu środowiskowe znowu nie są zainicjalizowane
   envSensorsInited = false;
@@ -258,7 +258,7 @@ void setup() {
   delay(500);
 
   if (!BLE.begin()) {
-    Serial.println("❌ BLE failed!");
+    Serial.println(" BLE failed!");
     while (1);
   }
 
@@ -278,9 +278,9 @@ void setup() {
 
   if (accelerometerOk()) {
     useAccelerometer = true;
-    Serial.println("🚀 Akcelerometr OK");
+    Serial.println("Akcelerometr OK");
   } else {
-    Serial.println("🚀 Akcelerometr ERROR");
+    Serial.println("Akcelerometr ERROR");
   }
 
   // UWAGA: NIE robimy tutaj init TMP117 / HDC / ILPS22QS
