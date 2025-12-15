@@ -1,0 +1,2 @@
+Inside .pio/libdeps/nucleo_l152re/STM32duinoBLE/src/utility/HCISpiTransport.cpp, add
+#define BNRG2A1_SPI_CLOCK_D3 0

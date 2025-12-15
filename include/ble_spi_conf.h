@@ -1,0 +1,4 @@
+#ifndef BLE_SPI_CONF_H
+#define BLE_SPI_CONF_H
+#define BNRG2A1_SPI_CLOCK_D3 0
+#endif // BLE_SPI_CONF_H
